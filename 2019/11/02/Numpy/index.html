@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Han">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Numpy[TOC] Joke - 2019&#x2F;10&#x2F;28 简介numpy（数值计算库）:  num - numerical 数值化的py - python  ndarray:  n - 任意个d - dimension维度arraynumpy的优势：  1.ndarray内存存储风格 2.支持并行化运算 3.底层C语言实现 故numpy适用于数据运算，但是数据处理较为复杂，需要用到panda nd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Numpy">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;02&#x2F;Numpy&#x2F;index.html">
+<meta property="og:site_name" content="Joke&#39;s Blog">
+<meta property="og:description" content="Numpy[TOC] Joke - 2019&#x2F;10&#x2F;28 简介numpy（数值计算库）:  num - numerical 数值化的py - python  ndarray:  n - 任意个d - dimension维度arraynumpy的优势：  1.ndarray内存存储风格 2.支持并行化运算 3.底层C语言实现 故numpy适用于数据运算，但是数据处理较为复杂，需要用到panda nd">
+<meta property="og:locale" content="zh-Han">
+<meta property="og:updated_time" content="2019-10-28T14:21:10.000Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/02/Numpy/"/>
+
+
+
+
+
+  <title>Numpy | Joke's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Han">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joke's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Learning Records</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/02/Numpy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joke">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joke's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Numpy</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-02T15:14:18+08:00">
+                2019-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h1><p>[TOC]</p>
+<p>Joke - 2019/10/28</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>numpy（数值计算库）:</p>
+<blockquote>
+<p>num - numerical 数值化的<br>py - python</p>
+</blockquote>
+<p>ndarray:</p>
+<blockquote>
+<p>n - 任意个<br>d - dimension维度<br>array<br>numpy的优势：</p>
+</blockquote>
+<p>1.ndarray内存存储风格</p>
+<p>2.支持并行化运算</p>
+<p>3.底层C语言实现</p>
+<p>故numpy适用于数据运算，但是数据处理较为复杂，需要用到panda</p>
+<h3 id="ndarry的属性"><a href="#ndarry的属性" class="headerlink" title="ndarry的属性"></a>ndarry的属性</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ndarray.shape</td>
+<td>数组维度的元组</td>
+</tr>
+<tr>
+<td>ndarray.ndim</td>
+<td>数组的维数</td>
+</tr>
+<tr>
+<td>ndarray.size</td>
+<td>数组中的元素数量</td>
+</tr>
+<tr>
+<td>ndarray.itemsize</td>
+<td>一个数组元素的长度（字节）</td>
+</tr>
+<tr>
+<td>ndarray.dtype</td>
+<td>数组元素的类型</td>
+</tr>
+<tr>
+<td>### 生成数组的方法</td>
+<td></td>
+</tr>
+<tr>
+<td>1. 生成0，1数组</td>
+<td></td>
+</tr>
+<tr>
+<td><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zero = np.zeros([shape])</span><br><span class="line">ones= np.ones([shape])</span><br></pre></td></tr></table></figure></td>
+<td></td>
+</tr>
+<tr>
+<td>2. 从现有数组中生成</td>
+<td></td>
+</tr>
+<tr>
+<td><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 现有数组设为A</span></span><br><span class="line"><span class="comment"># 深拷贝（关联源，源改变则复制品也改变）：</span></span><br><span class="line">np.array(A)</span><br><span class="line">np.copy(A)</span><br><span class="line"> <span class="comment"># 浅拷贝：</span></span><br><span class="line">np.asarray(A)</span><br></pre></td></tr></table></figure></td>
+<td></td>
+</tr>
+<tr>
+<td>3. 生成固定范围的数组</td>
+<td></td>
+</tr>
+<tr>
+<td><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">np.linspace(a,b,c) <span class="comment"># (a,b)范围，c为元素个数，元素间等距</span></span><br><span class="line">np.arrange(a,b,c) <span class="comment"># (a,b)范围，c为步长</span></span><br></pre></td></tr></table></figure></td>
+<td></td>
+</tr>
+<tr>
+<td>4. 生成随机数组</td>
+<td></td>
+</tr>
+<tr>
+<td><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">np.random.uniform(low,high,size(或shape)) <span class="comment"># 均匀分布</span></span><br><span class="line">np.random.normal(loc,scale,size(或shape)) <span class="comment"># 正态分布，loc为均值μ，scale为标准差σ</span></span><br></pre></td></tr></table></figure></td>
+<td></td>
+</tr>
+<tr>
+<td>### ndarry形状修改</td>
+<td></td>
+</tr>
+<tr>
+<td><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ndarry.reshape((shape)) <span class="comment"># 元素排列顺序不变，只更改形状，改变发生在返回的一个新的ndarray对象，原数据不变</span></span><br><span class="line">ndarry.reshape((<span class="number">-1</span>,x)) <span class="comment"># 自动计算行，指定列</span></span><br><span class="line">ndarray.resize((shape)) <span class="comment"># 元素排列顺序不变，只更改形状，无返回值，直接改变原始数据中</span></span><br><span class="line">ndarray.T <span class="comment"># 改变发生在返回的一个新的ndarray对象中，转置</span></span><br></pre></td></tr></table></figure></td>
+<td></td>
+</tr>
+<tr>
+<td>### ndarray 类型修改</td>
+<td></td>
+</tr>
+<tr>
+<td><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ndarray.ashape(type) <span class="comment"># type为目标类型</span></span><br><span class="line"><span class="comment"># 序列化到本地：</span></span><br><span class="line">ndarray.tostring()</span><br></pre></td></tr></table></figure></td>
+<td></td>
+</tr>
+<tr>
+<td>### ndarray 数组去重</td>
+<td></td>
+</tr>
+<tr>
+<td><code>np.unique(array)</code></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="ndarray的运算"><a href="#ndarray的运算" class="headerlink" title="ndarray的运算"></a>ndarray的运算</h3><h4 id="a-逻辑运算"><a href="#a-逻辑运算" class="headerlink" title="a.逻辑运算"></a>a.逻辑运算</h4><ol>
+<li><h5 id="布尔索引："><a href="#布尔索引：" class="headerlink" title="布尔索引："></a>布尔索引：</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">array((array &gt; x)) <span class="comment"># 其中array &gt; x为逻辑判断，有返回值</span></span><br><span class="line">array(array &gt; x)  = y <span class="comment"># 将满足条件(array &gt; x)的值赋值为y</span></span><br></pre></td></tr></table></figure></li>
+<li><h5 id="通用判断函数："><a href="#通用判断函数：" class="headerlink" title="通用判断函数："></a>通用判断函数：</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">np.all(布尔值)</span><br><span class="line"><span class="comment"># 只要有一个False就返回False,全是True才选择True。</span></span><br><span class="line">np.any(布尔值)</span><br><span class="line"><span class="comment"># 只要有一个True就返回True,全是False才选择False。</span></span><br></pre></td></tr></table></figure></li>
+<li><h5 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">np.where</span><br><span class="line">np.where(布尔值，<span class="literal">True</span>的位置，<span class="literal">False</span>的位置)</span><br><span class="line">np.logical-<span class="keyword">and</span>((布尔值，布尔值)，<span class="literal">True</span>的st)值，</span><br><span class="line"><span class="literal">False</span>的值。</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="b-统计运算"><a href="#b-统计运算" class="headerlink" title="b.统计运算"></a>b.统计运算</h4><p>​    统计指标函数：min,max,mean,median,var,std</p>
+<p>​    用法：np.函数名</p>
+<p>​                ndarray.方法名</p>
+<p>​    最大值所在位置：np.argmax(temp,axis=)</p>
+<p>​    最小值所在位置：np.argmin(temp,axis=)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.min(temp,axis=x)<span class="comment"># 其中axis为轴,x为0时求出列最小值，x为1时求出行最小值，不设置axis时求所有元素的最小值，其余统计指标函数类似。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="c-数组运算"><a href="#c-数组运算" class="headerlink" title="c.数组运算"></a>c.数组运算</h4><p>数组与数，直接用运算符</p>
+<p>数组与数组之间的运算：</p>
+<p>​    广播机制（数组之间可以运算的条件）：</p>
+<p>​        1）维度相等</p>
+<p>​        2）对应的shape值其中一个为1</p>
+<p>​    满足任一即可。</p>
+<h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h3><p>矩阵存储（两种）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">np.array = ([matrix]) <span class="comment"># 以二维数组的结构存储</span></span><br><span class="line"><span class="comment"># 矩阵相乘（三种）：</span></span><br><span class="line">    np.matmul(a,b)</span><br><span class="line">    np.dot(a,b)</span><br><span class="line">    <span class="comment"># 或者array1 @ array2</span></span><br><span class="line">np.mat = ([matrix]) <span class="comment"># 以矩阵的数据结构存储</span></span><br><span class="line"><span class="comment"># 直接用 * 运算符</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="合并分割"><a href="#合并分割" class="headerlink" title="合并分割"></a>合并分割</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">np.hstack(a,b) <span class="comment"># 水平合并</span></span><br><span class="line">np.vstack(a,b) <span class="comment"># 垂直合并</span></span><br><span class="line">np.concatenate((a1,a2),axis=<span class="number">0</span>) <span class="comment">#合并 axis决定合并方向，0为垂直，1为水平</span></span><br><span class="line">np.split(ary,indices_or_sections,axis=<span class="number">0</span>) <span class="comment"># 分割ary，可以按照数量均等分割，也可以按照索引进行分割</span></span><br><span class="line"><span class="comment">#例如：</span></span><br><span class="line">    np.split(ary,<span class="number">3</span>) <span class="comment"># 将ary均分为三个数组</span></span><br><span class="line">    np.split(ary,[<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">10</span>]) <span class="comment"># 将ary分割为四个数组，第一个为ary中的第1、2、3个元素组成，第二个为第4、5个元素组成，以此类推。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="IO操作与数据处理"><a href="#IO操作与数据处理" class="headerlink" title="IO操作与数据处理"></a>IO操作与数据处理</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file = np.genfromtxt(<span class="string">"file.csv"</span>,delimiter=<span class="string">","</span>) <span class="comment"># 读取csv文件，分割符为","，只能读取数字，字符类型读取后为缺失值（nan）,缺失值类型为float64</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如何处理缺失值？</li>
+</ul>
+<p>​    1.数据量比较少时使用插补/替换</p>
+<p>​    具体方法：一列的平均值或者中位数作为补充</p>
+<p>​    2.直接删除含有缺失值的样本</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/02/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Joke</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Numpy"><span class="nav-number">1.</span> <span class="nav-text">Numpy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.0.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ndarry的属性"><span class="nav-number">1.0.2.</span> <span class="nav-text">ndarry的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ndarray的运算"><span class="nav-number">1.0.3.</span> <span class="nav-text">ndarray的运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-逻辑运算"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">a.逻辑运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#布尔索引："><span class="nav-number">1.0.3.1.1.</span> <span class="nav-text">布尔索引：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通用判断函数："><span class="nav-number">1.0.3.1.2.</span> <span class="nav-text">通用判断函数：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#三元运算符"><span class="nav-number">1.0.3.1.3.</span> <span class="nav-text">三元运算符</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-统计运算"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">b.统计运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-数组运算"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">c.数组运算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩阵"><span class="nav-number">1.0.4.</span> <span class="nav-text">矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并分割"><span class="nav-number">1.0.5.</span> <span class="nav-text">合并分割</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IO操作与数据处理"><span class="nav-number">1.0.5.1.</span> <span class="nav-text">IO操作与数据处理</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joke</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
