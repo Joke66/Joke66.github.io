@@ -228,6 +228,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/02/Github%20%E4%B8%8A%E9%83%A8%E7%BD%B2Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%BF%87%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joke">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joke's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/02/Github%20%E4%B8%8A%E9%83%A8%E7%BD%B2Hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%BF%87%E7%A8%8B/" itemprop="url">Github 上部署Hexo个人博客的过程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-02T16:13:42+08:00">
+                2019-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Github-上部署Hexo个人博客的过程"><a href="#Github-上部署Hexo个人博客的过程" class="headerlink" title="Github 上部署Hexo个人博客的过程"></a>Github 上部署Hexo个人博客的过程</h3><h3 id="创建GItHub域名和空间"><a href="#创建GItHub域名和空间" class="headerlink" title="创建GItHub域名和空间"></a>创建GItHub域名和空间</h3><p>首先需要注册一个github账号，其中username需要认真注意，毕竟最终的个人博客的域名将会是username.github.io。</p>
+<h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><p>然后需要创建一个仓库(repository) 来存储之后的博客网站，点击首页任意位置出现的 <code>New repository</code>按钮创建仓库, Respository name 中的<code>username</code>.github.io 的<code>username</code> 一定与前面的Owner 一致，记住你的<code>username</code>下面会用到。</p>
+<h3 id="安装工具"><a href="#安装工具" class="headerlink" title="安装工具"></a>安装工具</h3><p>1.安装git</p>
+<p> windows10官网下载：<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">https://git-scm.com/download/win</a> </p>
+<p>linux: <code>$ brew install git   // 安装Git</code></p>
+<p>2.安装Nodejs</p>
+<p>windows去nodejs官网下载： <a href="http://nodejs.cn/download/" target="_blank" rel="noopener">http://nodejs.cn/download/</a> </p>
+<p> 所有必须工具已经安装完成 。</p>
+<h3 id="创建、配置博客"><a href="#创建、配置博客" class="headerlink" title="创建、配置博客"></a>创建、配置博客</h3><h4 id="创建本地博客"><a href="#创建本地博客" class="headerlink" title="创建本地博客"></a>创建本地博客</h4><p> 将下面的 username 替换成你自己的username，执行成功后，会创建出一个名为 username.github.io 的文件夹,之后所有的操作都是在这个文件夹中进行的。 </p>
+<p> <code>hexo init username.github.io</code> </p>
+<p><code>npm i hexo-server</code>  hexo 3.0把服务器独立成个别模块，需要单独安装 </p>
+<h4 id="配置博客"><a href="#配置博客" class="headerlink" title="配置博客"></a>配置博客</h4><p> <strong>基础配置：</strong>打开文件位置username.github.io/<code>_config.yml</code>修改几个键值对，下面把几个必须设置的列出来按需求修改 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">title: Joke&apos;s Blog //你的博客名，把Joke&apos;s Blog改为自己的</span><br><span class="line"></span><br><span class="line">author: Joke //作者名，把Joke 改为自己的</span><br><span class="line"></span><br><span class="line">language: zh-Han // 语言类型，此处为中文简体</span><br><span class="line"></span><br><span class="line">deploy:</span><br><span class="line">  type: &apos;git&apos; //使用GIT发布</span><br><span class="line">  repo: git@github.com:Joke66/joke66.github.io.git //将此处改为刚刚创建的Github仓库，其实只需要将其中的Joke66都改为自己的username即可。</span><br></pre></td></tr></table></figure>
+
+<p> <strong>注意配置的键值之间一定要有空格</strong> </p>
+<p><strong>配置github账户信息</strong></p>
+<p> 回到gitbash中，配置github账户信息（YourName和YourEail都替换成自己的）： </p>
+<p><code>git config --global user.name &quot;YourName&quot;</code></p>
+<p><code>git config --global user.email&quot;YourEail&quot;</code></p>
+<p><strong>创建SSH</strong><br>在gitbash中输入：<code>ssh-keygen -t rsa -C &quot;youremail@example.com</code>，生成ssh。然后按以下的方式找到<code>id_rsa.pub</code>文件的内容。 </p>
+<p><code>cd ~/.ssh</code></p>
+<p><code>cat id_rsa.pub</code></p>
+<p>之后将产生的ssh-rsa复制，打开github进入personal settings-&gt;SSH and GPA keys -&gt;new SSH key</p>
+<p>打开新建窗口后，ssh名随意填，内容将刚刚本地产生的ssh密钥添入并保存。</p>
+<p>回到本地gitbash中，输入 <code>ssh -T git@github.com</code> 测试gitbash中的密钥验证是否添加成功。</p>
+<p><strong>测试本地访问</strong></p>
+<p><code>hexo generate</code>  根据配置生成html文件以供浏览器访问</p>
+<p><code>hexo server</code> 启动服务器，用浏览器访问  <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 测试</p>
+<h3 id="同步至github"><a href="#同步至github" class="headerlink" title="同步至github"></a>同步至github</h3><p> *<em>安装hexo-deployer-git自动部署发布工具 *</em></p>
+<p><code>npm install hexo-deployer-git --save</code></p>
+<p><strong>同步上传</strong></p>
+<p><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code></p>
+<p><strong>访问</strong></p>
+<p> 博客已经完成了，在浏览器中输入  <a href="https://joke66.github.io/" target="_blank" rel="noopener">https://joke66.github.io/</a> 就能够访问了。 </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/02/Numpy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -647,7 +800,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
